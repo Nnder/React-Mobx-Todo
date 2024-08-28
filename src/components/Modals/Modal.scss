@@ -1,0 +1,27 @@
+@use '../../index.scss' as colors;
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__content {
+        background-color: colors.$background;
+        border-radius: 10px;
+        width: 400px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+
+        &_close {
+            align-self: flex-end;
+            margin: 8px;
+        }
+    }
+}
