@@ -1,0 +1,28 @@
+@use '../../../index.scss' as colors;
+
+.modal__container {
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+
+
+    &-title {
+        margin: 8px;
+        padding: 4px;
+        width: 80%;
+        border-radius: 5px;
+        border: 1px solid black;
+        height: 30px;
+        font-size: 20px;
+    }
+
+    &-body {
+        margin: 8px;
+        padding: 4px;
+        width: 80%;
+        height: 120px;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+}

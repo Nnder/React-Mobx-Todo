@@ -1,4 +1,4 @@
-@use '../../index.scss' as colors;
+@use '../../../index.scss' as colors;
 
 .modal {
     position: fixed;
@@ -11,17 +11,29 @@
     justify-content: center;
     align-items: center;
 
+    h3 {
+        margin: 5px;
+    }
+
     &__content {
         background-color: colors.$background;
         border-radius: 10px;
-        width: 400px;
-        height: 400px;
+        width: 320px;
+        height: 350px;
         display: flex;
         flex-direction: column;
 
         &_close {
             align-self: flex-end;
             margin: 8px;
+            color: rgb(185, 67, 67);
+            height: 30px;
+            width: 30px;
+            padding: 4px;
+            
+            &:hover {
+                border-color: rgb(185, 67, 67);
+            }
         }
     }
 }

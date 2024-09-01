@@ -29,8 +29,6 @@ export const TaskItem = observer(({task} : TaskItemProps) => {
                     {task.title} 
                     <input type="checkbox" checked={task.completed} onChange={handleChange}/>
                 </div>
-                
-
             </div>
             
             {showChildren && !!task.children.length && <TaskList show={showChildren} tasks={task.children}/>}
