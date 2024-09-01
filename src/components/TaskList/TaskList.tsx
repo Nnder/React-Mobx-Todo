@@ -1,10 +1,21 @@
 import { observer } from "mobx-react-lite"
-import TaskStore from "../../store/TaskStore"
+import { TaskItem } from "./TaskItem/TaskItem"
+import { Task } from "../../types/types";
+import './TaskList.scss';
 
-export const TaskList = observer(() => {
-  return (
-    <div>
-      {TaskStore.tasks.map(task => <div key={task.id}>{task.title}</div>)}
-    </div>
-  )
+interface TaskListProps {
+    tasks: Task[];
+    show?: boolean;
+}
+
+export const TaskList = observer(({tasks, show = true}: TaskListProps) => {
+
+    return (
+        <ul style={{display: show ? 'flex' : 'none',}}
+        className="tasks__container">
+            {tasks.map(task => 
+                <TaskItem task={task} key={task.id}/>
+            )}
+        </ul>
+    )
 })

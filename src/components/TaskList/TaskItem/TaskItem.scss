@@ -1,0 +1,18 @@
+@use '../../../index.scss' as colors;
+
+.task {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &__btn {
+        width: 50px;
+        height: 40px;
+    }
+
+    &__label {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
