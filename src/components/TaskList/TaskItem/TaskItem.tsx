@@ -4,6 +4,8 @@ import { TaskList } from "../TaskList";
 import { Task } from "../../../types/types";
 import TaskStore from "../../../store/TaskStore";
 import './TaskItem.scss';
+import Dropdown from "../../Dropdown/Dropdown";
+import { NewTask } from "../../Modals";
 
 interface TaskItemProps {
     task: Task;
@@ -18,20 +20,28 @@ export const TaskItem = observer(({task} : TaskItemProps) => {
     }
 
     return (
-        <li>
-            <div className="task">
-                <button className="task__btn" disabled={!task.children.length}
-                    onClick={()=>setShowChildren(prev=> !prev)}>
-                    {showChildren ?  '∧' : '>'}
-                </button>
+        <>
+            <li>
+                <div className="task">
+                    <button className="task__btn" disabled={!task.children.length}
+                        onClick={()=>setShowChildren(prev=> !prev)}>
+                        {showChildren ?  '∧' : '>'}
+                    </button>
 
-                <div className="task__label">
-                    {task.title} 
-                    <input type="checkbox" checked={task.completed} onChange={handleChange}/>
+                    <Dropdown task={task}/>
+
+                    <div className="task__label">
+                        
+                        {task.title}
+                        <input type="checkbox" checked={task.completed} onChange={handleChange}/>
+                    </div>
                 </div>
-            </div>
-            
-            {showChildren && !!task.children.length && <TaskList show={showChildren} tasks={task.children}/>}
-        </li>
+                
+                {showChildren && !!task.children.length && <TaskList show={showChildren} tasks={task.children}/>}
+            </li>
+        </>
+        
     )
 })
+
+

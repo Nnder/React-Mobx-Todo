@@ -9,6 +9,7 @@ export const NewTask = () => {
   const [body, setBody] = useState("")
 
   const createTask = () =>{
+    if(!title ||!body) return;
     setOpen(false);
     TaskStore.addTask({
         id: `${TaskStore.tasks.length+1}`, 
@@ -17,10 +18,10 @@ export const NewTask = () => {
         body, 
         title, 
     })
-
     setTitle("")
     setBody("")
   }
+  
   return (
     <>
         <button onClick={()=>setOpen(true)}>

@@ -16,6 +16,8 @@ class TaskStore {
             ]}
         ]},
     ] 
+
+    selectedTask: Task | null = null;
   
     constructor() {
         makeAutoObservable(this)
@@ -25,22 +27,36 @@ class TaskStore {
         this.tasks.push(task)
     }
 
-    deleteTask(task: Task) {
-        this.tasks = this.tasks.filter(t => t.id!== task.id)
+    deleteTask(task: Task, tasks : Task[] = this.tasks){
+        const newTasks = tasks.filter(t => {
+            if(task.id === t.id){
+                return false;
+            } else if(t.children && t.children.length > 0){
+                t.children = this.deleteTask(task, t.children);
+                return true;
+            }
+            return true;
+        })
+
+        return newTasks
     }
 
-    updateTask(task: Task) {
-        this.tasks = this.tasks.map(t => t.id === task.id? task : t)
+    updateTask(task: Task, title: string, body: string) {
+        task.title = title;
+        task.body = body;
     }
 
     completeTask(task: Task, completed: boolean) {
         task.completed = completed;
-        console.log(task.completed)
         if (task.children && task.children.length > 0) {
             for (let subtask of task.children) {
                 this.completeTask(subtask, completed);
             }
         }
+    }
+
+    setSelectedTask(task:Task) {
+        this.selectedTask = task;
     }
 
 }
