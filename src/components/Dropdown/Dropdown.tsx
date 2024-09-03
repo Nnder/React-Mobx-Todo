@@ -1,10 +1,10 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
-import './styles.css';
+import './styles.scss';
 import { Task } from '../../types/types';
 import { useState } from 'react';
-import { NewSubtask } from '../Modals/NewSubtask/NewSubtask';
+import { NewSubtask } from '../Modals';
+import { UpdateTask } from '../Modals';
 import TaskStore from '../../store/TaskStore';
-import { UpdateTask } from '../Modals/UpdateTask/UpdateTask';
 
 interface Dropdown {
     task: Task;

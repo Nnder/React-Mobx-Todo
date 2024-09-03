@@ -1,0 +1,27 @@
+.selected__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 16px;
+    background-color: aquamarine;
+    box-sizing: border-box;
+    height: 100vh;
+
+    &__text {
+        margin: 8px 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        &-title {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        &-body {
+            font-size: 16px;
+        }
+    }
+}
