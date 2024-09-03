@@ -48,12 +48,10 @@ class TaskStore {
     }
 
     saveStore(){
-        const tasks = this.clearParent([...this.tasks]) 
+        const tasks = this.clearParent([...this.tasks])
         localStorage.setItem('tasks', JSON.stringify(tasks))
         localStorage.setItem('selectedTask', JSON.stringify(this.selectedTask))
-
-        console.log(localStorage.getItem('selectedTask') as string)
-        console.log(localStorage.getItem('tasks') as string)
+        this.setParent(this.tasks)
     }
 
     addTask(task: Task) {
@@ -65,6 +63,21 @@ class TaskStore {
         parent.children.push(task)
         this.completeParent(parent)
         this.saveStore()
+    }
+
+    getTaskById(id: string, tasks: Task[] = this.tasks): Task | null {
+        for (let task of tasks) {
+            if (task.id === id) {
+                return task;
+            }
+            if (task.children.length > 0) {
+                const found = this.getTaskById(id, task.children);
+                if (found) {
+                    return found;
+                }
+            }
+        }
+        return null;
     }
 
     deleteTask(task: Task){

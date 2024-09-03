@@ -2,8 +2,9 @@ import { observer } from "mobx-react-lite"
 import TaskStore from './store/TaskStore.ts'
 import { TaskList } from "./components/TaskList/TaskList.tsx";
 import { NewTask } from "./components/Modals";
-import { SelectedTask } from "./components/SelectedTask/SelectedTask.tsx";
+
 import './index.scss'
+import { Outlet } from "react-router-dom";
 
 interface AppProps {
     taskStore: typeof TaskStore;
@@ -16,7 +17,7 @@ const App: React.FC<AppProps> = observer(() => {
                 <NewTask/>
                 <TaskList tasks={TaskStore.tasks}/>
             </div>
-            <SelectedTask/>
+            <Outlet/>
         </div>
     )
 })

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { NewSubtask } from '../Modals';
 import { UpdateTask } from '../Modals';
 import TaskStore from '../../store/TaskStore';
+import { EllipsisVertical } from 'lucide-react';
 
 interface Dropdown {
     task: Task;
@@ -27,8 +28,8 @@ const Dropdown: React.FC<Dropdown> = ({task} : Dropdown) => {
         <>
             <DropdownMenu.Root>
             <DropdownMenu.Trigger asChild>
-                <button aria-label="Customise options">
-                <img src="vertical.svg" className="IconButton" alt="M"/>
+                <button aria-label="Customise options" className='elipsis'>
+                    <EllipsisVertical className="IconButton"/>
                 </button>
             </DropdownMenu.Trigger>
 

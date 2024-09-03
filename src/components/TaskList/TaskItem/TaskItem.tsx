@@ -5,6 +5,8 @@ import { Task } from "../../../types/types";
 import TaskStore from "../../../store/TaskStore";
 import './TaskItem.scss';
 import Dropdown from "../../Dropdown/Dropdown";
+import { Link } from "react-router-dom";
+import { ChevronRight, ChevronUp } from "lucide-react";
 interface TaskItemProps {
     task: Task;
 }
@@ -26,13 +28,13 @@ export const TaskItem: React.FC<TaskItemProps>  = observer(({task}) => {
                 <div className="task">
                     <button className="task__btn" disabled={!task.children.length}
                         onClick={()=>setShowChildren(prev=> !prev)}>
-                        {showChildren ?  '∧' : '>'}
+                        {showChildren ?  <ChevronUp /> : <ChevronRight />}
                     </button>
 
                     <Dropdown task={task}/>
 
                     <div className="task__label">
-                        <div className="task__label-title" onClick={setTask}>{task.title}</div>
+                        <Link to={`/task/${task.id}`}><div className="task__label-title" onClick={setTask}>{task.title}</div></Link>
                         <input type="checkbox" checked={task.completed} onChange={handleChange}/>
                     </div>
                 </div>
