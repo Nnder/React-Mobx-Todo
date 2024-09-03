@@ -4,10 +4,10 @@ import App from './App.tsx'
 import './index.scss'
 import TaskStore from './store/TaskStore.ts'
 import { SelectedTask } from "./components/SelectedTask/SelectedTask.tsx";
-import { RouterProvider, createHashRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App taskStore={TaskStore}/>,
