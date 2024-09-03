@@ -1,3 +1,9 @@
+### Для запуска 
+
+npm install
+npm run dev
+
+
 ### Дизайн
 
 Оформление приложения исходя из [схематичного примера](https://www.figma.com/file/9ptzO19xMujbgo0YVG6KTB/%D1%82%D0%B5%D1%81%D1%82?type=design&node-id=0-1&t=SQIDI8pmIiJsGxfe-0).  
