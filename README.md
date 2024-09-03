@@ -1,7 +1,7 @@
 ### Для запуска 
 
-npm install
-npm run dev
+- npm install
+- npm run dev
 
 
 ### Дизайн
