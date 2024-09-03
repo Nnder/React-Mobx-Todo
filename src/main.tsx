@@ -20,9 +20,11 @@ const router = createBrowserRouter([
       },
     ]
   },
-], {
-  basename: '/React-Mobx-Todo'
-});
+], 
+// {
+//   basename: '/React-Mobx-Todo'
+// }
+);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
