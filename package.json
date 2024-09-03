@@ -3,6 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://nnder.github.io/React-Mobx-Todo",
+
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && nx vite:build",
