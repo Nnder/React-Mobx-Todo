@@ -5,18 +5,19 @@ import { Task } from "../../../types/types";
 import TaskStore from "../../../store/TaskStore";
 import './TaskItem.scss';
 import Dropdown from "../../Dropdown/Dropdown";
-import { NewTask } from "../../Modals";
-
 interface TaskItemProps {
     task: Task;
 }
-
 
 export const TaskItem = observer(({task} : TaskItemProps) => {
     const [showChildren, setShowChildren] = useState(false);
 
     const handleChange = ()=>{
         TaskStore.completeTask(task, !task.completed)
+    }
+
+    const setTask = () =>{
+        TaskStore.setSelectedTask(task)
     }
 
     return (
@@ -31,8 +32,7 @@ export const TaskItem = observer(({task} : TaskItemProps) => {
                     <Dropdown task={task}/>
 
                     <div className="task__label">
-                        
-                        {task.title}
+                        <div className="task__label-title" onClick={setTask}>{task.title}</div>
                         <input type="checkbox" checked={task.completed} onChange={handleChange}/>
                     </div>
                 </div>

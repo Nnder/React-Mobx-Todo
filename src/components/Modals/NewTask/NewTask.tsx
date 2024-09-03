@@ -15,8 +15,9 @@ export const NewTask = () => {
         id: `${TaskStore.tasks.length+1}`, 
         completed: false, 
         children: [],
+        parent: null,
         body, 
-        title, 
+        title,
     })
     setTitle("")
     setBody("")
