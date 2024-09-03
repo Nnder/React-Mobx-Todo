@@ -4,10 +4,10 @@ import App from './App.tsx'
 import './index.scss'
 import TaskStore from './store/TaskStore.ts'
 import { SelectedTask } from "./components/SelectedTask/SelectedTask.tsx";
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createHashRouter } from 'react-router-dom'
 
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App taskStore={TaskStore}/>,
@@ -20,14 +20,12 @@ const router = createBrowserRouter([
       },
     ]
   },
-]);
-
-export default function Router() {
-  return 
-}
+], {
+  basename: '/React-Mobx-Todo'
+});
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <RouterProvider router={router} />;
+    <RouterProvider router={router} />
   </StrictMode>,
 )
