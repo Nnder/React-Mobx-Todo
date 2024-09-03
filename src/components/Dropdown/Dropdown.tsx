@@ -10,7 +10,7 @@ interface Dropdown {
     task: Task;
 }
 
-const Dropdown = ({task} : Dropdown) => {
+const Dropdown: React.FC<Dropdown> = ({task} : Dropdown) => {
     const [openNewSubtask, setOpenNewSubtask] = useState(false)
     const [openUpdateTask, setOpenUpdateTask] = useState(false)
 

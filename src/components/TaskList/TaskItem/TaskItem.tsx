@@ -9,7 +9,7 @@ interface TaskItemProps {
     task: Task;
 }
 
-export const TaskItem = observer(({task} : TaskItemProps) => {
+export const TaskItem: React.FC<TaskItemProps>  = observer(({task}) => {
     const [showChildren, setShowChildren] = useState(false);
 
     const handleChange = ()=>{

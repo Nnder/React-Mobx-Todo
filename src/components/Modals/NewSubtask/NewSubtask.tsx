@@ -9,7 +9,7 @@ interface NewSubtask {
     onClose: ()=>void;
 }
 
-export const NewSubtask = ({task, open, onClose} : NewSubtask) => {
+export const NewSubtask: React.FC<NewSubtask> = ({task, open, onClose}) => {
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
   

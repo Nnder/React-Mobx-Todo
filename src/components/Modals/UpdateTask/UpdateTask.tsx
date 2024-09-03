@@ -9,7 +9,7 @@ interface UpdateTask {
     onClose: ()=>void;
 }
 
-export const UpdateTask = ({task, open, onClose} : UpdateTask) => {
+export const UpdateTask: React.FC<UpdateTask> = ({task, open, onClose}) => {
     const [title, setTitle] = useState(task.title)
     const [body, setBody] = useState(task.body)
   

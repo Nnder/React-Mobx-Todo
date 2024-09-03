@@ -60,3 +60,15 @@ button {
         outline: 4px auto -webkit-focus-ring-color;
     }
 }
+
+.main__container {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+
+    &-tasklist {
+        padding-top: 16px;
+        box-sizing: border-box;
+        height: 100vh;
+        overflow: auto;
+    }
+}

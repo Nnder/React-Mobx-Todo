@@ -2,26 +2,69 @@ import { makeAutoObservable } from 'mobx'
 import { Task } from '../types/types'
 
 class TaskStore {
-    tasks: Task[] = [
-        {id: '1', title: 'Задача 1', body: 'Тело задача 1', completed: false, children: [], parent: null},
-        {id: '2', title: 'Задача 2', body: 'Тело задача 2', completed: false, children: [], parent: null},
-        {id: '3', title: 'Задача 3', body: 'Тело задача 3', completed: false, children: [], parent: null},
-        {id: '4', title: 'Задача 4', body: 'Тело задача 4', completed: false, children: [], parent: null},
-    ] 
-
+    tasks: Task[] = []
     selectedTask: Task | null = null;
-  
+
     constructor() {
         makeAutoObservable(this)
+        this.setStore()
+    }
+
+    private clearParent(tasks: Task[]) {
+        // удаляем все parent для children из-за циклических ссылок
+        tasks.map(task => {
+            task.parent = null
+            if(task.children){
+                this.clearParent(task.children)
+            }
+        })
+        return tasks
+    }
+
+    private setParent(tasks: Task[], parent: Task | null = null) {
+        if(tasks.length === 0) return
+        // устанавливаем parent для children
+        tasks.forEach(task => {
+            task.parent = parent
+            if(task.children && task.children.length > 0){
+                this.setParent(task.children, task)
+            }
+        })
+    }
+
+    clearStorage(){
+        localStorage.setItem('tasks', "")
+        localStorage.setItem('selectedTask', "")
+    }
+
+    setStore(){
+        const storedTasks = localStorage.getItem('tasks');
+        const storedSelectedTask = localStorage.getItem('selectedTask');
+
+        this.tasks = storedTasks ? JSON.parse(storedTasks) : []
+
+        this.setParent(this.tasks)
+        this.selectedTask = storedSelectedTask ? JSON.parse(storedSelectedTask) : null;
+    }
+
+    saveStore(){
+        const tasks = this.clearParent([...this.tasks]) 
+        localStorage.setItem('tasks', JSON.stringify(tasks))
+        localStorage.setItem('selectedTask', JSON.stringify(this.selectedTask))
+
+        console.log(localStorage.getItem('selectedTask') as string)
+        console.log(localStorage.getItem('tasks') as string)
     }
 
     addTask(task: Task) {
         this.tasks.push(task)
+        this.saveStore()
     }
 
     addSubTask(parent: Task, task: Task) {
         parent.children.push(task)
         this.completeParent(parent)
+        this.saveStore()
     }
 
     deleteTask(task: Task){
@@ -40,11 +83,13 @@ class TaskStore {
         } else {
             this.tasks = this.tasks.filter((child)=> child.id !== task.id)
         }
+        this.saveStore()
     }
 
     updateTask(task: Task, title: string, body: string) {
         task.title = title;
         task.body = body;
+        this.saveStore()
     }
 
     completeParent(task: Task){
@@ -52,6 +97,8 @@ class TaskStore {
         task.completed = task.children.every(child => child.completed === true);
         if (task.parent) {
             this.completeParent(task.parent);
+        } else {
+            this.saveStore()
         }
     }
 
@@ -66,11 +113,14 @@ class TaskStore {
         // проверяем может ли родитель изменить свой статус
         if (task.parent) {
             this.completeParent(task.parent);
+        } else {
+            this.saveStore()
         }
     }
 
     setSelectedTask(task:Task) {
         this.selectedTask = task;
+        this.saveStore()
     }
 }
 

@@ -3,27 +3,19 @@ import TaskStore from './store/TaskStore.ts'
 import { TaskList } from "./components/TaskList/TaskList.tsx";
 import { NewTask } from "./components/Modals";
 import { SelectedTask } from "./components/SelectedTask/SelectedTask.tsx";
+import './index.scss'
 
 interface AppProps {
     taskStore: typeof TaskStore;
 }
 
 const App: React.FC<AppProps> = observer(() => {
-    
     return (
-        <div style={{
-            display: 'grid',
-            gridTemplateColumns: '400px 1fr',
-        }}>
-            <div style={{
-                paddingTop: '16px',
-                boxSizing: 'border-box',
-                height: '100vh',
-                }}>
+        <div className="main__container">
+            <div className="main__container-tasklist">
                 <NewTask/>
                 <TaskList tasks={TaskStore.tasks}/>
             </div>
-
             <SelectedTask/>
         </div>
     )

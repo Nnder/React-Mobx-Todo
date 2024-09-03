@@ -8,7 +8,7 @@ interface TaskListProps {
     show?: boolean;
 }
 
-export const TaskList = observer(({tasks, show = true}: TaskListProps) => {
+export const TaskList: React.FC<TaskListProps>  = observer(({tasks, show = true}: TaskListProps) => {
 
     return (
         <ul style={{display: show ? 'flex' : 'none',}}
